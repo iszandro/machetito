@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+vocabulary:
+  name: vocabulary
+  display_name: Vocabulary
+
+lessons:
+  name: lessons
+  display_name: Lessons
+
+kanjis:
+  name: kanjis
+  display_name: Kanjis
+
+verbs:
+  name: verbs
+  display_name: Verbs
+
+adjectives:
+  name: adjectives
+  display_name: Adjectives
+
+na_adjectives:
+  name: na adjectives
+  display_name: NA Adjective
+
+lesson_1:
+  name: lesson 1
+  display_name: Lesson 1

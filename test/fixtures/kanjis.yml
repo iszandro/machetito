@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one_jp:
+  name: 一
+  language: jp
+  readings: ['いち']
+
+two_jp:
+  name: 二
+  language: jp
+  readings: ['に']
