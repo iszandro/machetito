@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+kanji_one:
+  category: kanjis
+  word: one_kanji
+
+kanji_two:
+  category: kanjis
+  word: two_kanji

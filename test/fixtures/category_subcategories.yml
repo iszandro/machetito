@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+vocabulary_verbs:
+  category: vocabulary
+  subcategory: verbs
+
+vocabulary_adjectives:
+  category: vocabulary
+  subcategory: adjectives
+
+adjectives_na_adjectives:
+  category: adjectives
+  subcategory: na_adjectives
+
+lessons_lesson_1:
+  category: lessons
+  subcategory: lesson_1
