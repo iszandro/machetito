@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_19_015119) do
+ActiveRecord::Schema.define(version: 2019_05_23_023727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,10 +50,34 @@ ActiveRecord::Schema.define(version: 2019_05_19_015119) do
     t.index ["word_id"], name: "index_category_words_on_word_id"
   end
 
+  create_table "expressions", force: :cascade do |t|
+    t.string "name"
+    t.string "language"
+    t.jsonb "meta"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "kanjis", force: :cascade do |t|
     t.string "name"
     t.string "language", default: "jp"
     t.string "readings", default: [], array: true
+    t.jsonb "meta", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "nouns", force: :cascade do |t|
+    t.string "name"
+    t.string "language", null: false
+    t.jsonb "meta", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "verbs", force: :cascade do |t|
+    t.string "name"
+    t.string "language", null: false
     t.jsonb "meta", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
