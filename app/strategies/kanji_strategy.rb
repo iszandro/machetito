@@ -4,6 +4,6 @@ class KanjiStrategy
   end
 
   def valid?(value)
-    @word.meta['kanji'] == value
+    @word.wordable.meta['kanji'] == value
   end
 end

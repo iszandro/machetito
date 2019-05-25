@@ -2,6 +2,7 @@
 
 <%= form_with(model: @word, url: [:category, :quiz], local: true) do |f| %>
   <%= f.hidden_field :id %>
+  <%= f.hidden_field :strategy, value: @strategy %>
   <%= f.text_field :answer, autofocus: true, autocomplete: 'off' %>
   <%= f.submit 'Submit' %>
 <% end %>

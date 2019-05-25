@@ -4,6 +4,6 @@ class HiraganaStrategy
   end
 
   def valid?(value)
-    @word.name == value
+    @word.wordable.name == value
   end
 end
