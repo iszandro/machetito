@@ -19,8 +19,6 @@ class CreateQuizPlan
     end.compact.shuffle
   end
 
-  private
-
   def words
     @_words ||= @category.words.includes(:wordable, translations: %i[wordable])
   end

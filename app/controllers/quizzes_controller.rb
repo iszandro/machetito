@@ -2,21 +2,17 @@ class QuizzesController < ApplicationController
   before_action :set_category
 
   def show
-    words = @category.words.includes(:wordable, translations: %i[wordable])
+    service = CreateQuizPlan.new(@category)
+    plan = service.perform
+    word_id = plan.first.first
 
-
-    @word = if params[:id].present?
-              words.where('words.id > :id', id: params[:id]).first
-            else
-              words.first
-            end
-
-    redirect_to category_path(@category) unless @word
+    @strategy = plan.first.last
+    @word = service.words.find(word_id)
   end
 
   def update
     @word = @category.words.includes(:wordable, translations: %i[wordable]).find(quiz_params[:id])
-    strategy = MeaningStrategy.new(@word)
+    strategy = quiz_params[:strategy].safe_constantize.new(@word)
 
     return redirect_to category_quiz_path(@category, id: @word.id) if strategy.valid?(quiz_params[:answer])
     render :show
@@ -29,6 +25,6 @@ class QuizzesController < ApplicationController
   end
 
   def quiz_params
-    params.require(:word).permit(:id, :answer)
+    params.require(:word).permit(:id, :answer, :strategy)
   end
 end
