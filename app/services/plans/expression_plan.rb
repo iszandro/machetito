@@ -4,11 +4,11 @@ module Plans
 
     def perform(word)
       plan = [
-        [word.id, MeaningStrategy],
-        [word.id, HiraganaStrategy],
+        [word.id, 'MeaningStrategy'],
+        [word.id, 'HiraganaStrategy'],
       ]
 
-      plan << [word.id, KanjiStrategy] if word.wordable.meta['kanji']
+      plan << [word.id, 'KanjiStrategy'] if word.wordable.meta['kanji']
 
       plan
     end

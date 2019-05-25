@@ -4,8 +4,8 @@ module Plans
 
     def perform(word)
       [
-        [word.id, MeaningStrategy],
-        [word.id, ReadingStrategy],
+        [word.id, 'MeaningStrategy'],
+        [word.id, 'ReadingStrategy'],
       ]
     end
   end
