@@ -1,0 +1,23 @@
+<h1 class="word"><%= @word.wordable.name %></h1>
+
+<% if @word.wordable.meta['kanji'] %>
+  <h2 class="word-kanji"><%= @word.wordable.meta['kanji'] %></h2>
+<% end %>
+
+<h5 class="word-type"><%= @word.wordable_type %></h5>
+
+<p class="word-description">
+  <%= @word.wordable.meta['description'] %>
+</p>
+
+<p class="word-example">
+  <%= @word.wordable.meta['example'] %>
+</p>
+
+<ul class="translations">
+  <% @word.translations.each do |translation| %>
+    <li class="translation">
+      <%= [translation.wordable.name, translation.wordable.meta['description']].compact.join(' => ') %>
+    </li>
+  <% end %>
+</ul>

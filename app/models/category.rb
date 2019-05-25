@@ -6,4 +6,6 @@ class Category < ApplicationRecord
   has_many :subcategories, through: :category_subcategories
   has_many :parents, through: :category_categories, source: :category
   has_many :words, through: :category_words
+
+  scope :with_no_parents, -> { where.not(id: CategorySubcategory.pluck(:subcategory_id)) }
 end
