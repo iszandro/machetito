@@ -16,9 +16,9 @@ class QuizzesController < ApplicationController
 
   def update
     @word = @category.words.includes(:wordable, translations: %i[wordable]).find(quiz_params[:id])
-    translation = @word.translations.find { |translation| translation.wordable.name == quiz_params[:answer] }
+    strategy = MeaningStrategy.new(@word)
 
-    return redirect_to category_quiz_path(@category, id: @word.id) if translation
+    return redirect_to category_quiz_path(@category, id: @word.id) if strategy.valid?(quiz_params[:answer])
     render :show
   end
 
