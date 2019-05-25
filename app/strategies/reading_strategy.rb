@@ -4,6 +4,6 @@ class ReadingStrategy
   end
 
   def valid?(value)
-    @word.readings.include?(value)
+    @word.wordable.readings.include?(value)
   end
 end

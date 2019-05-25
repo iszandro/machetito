@@ -4,6 +4,6 @@ class GroupStrategy
   end
 
   def valid?(value)
-    @word.meta['group'] == value
+    @word.wordable.meta['group'] == value
   end
 end
