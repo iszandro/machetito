@@ -1,0 +1,35 @@
+<h1><%= @category.display_name %></h1>
+
+<% if @category.subcategories.any? %>
+  <ul class="categories">
+    <% @category.subcategories.each do |subcategory| %>
+      <li class="category">
+        <%= link_to subcategory.display_name, category_path(subcategory) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @category.words.any? %>
+  <%= link_to 'Start Quiz', category_quiz_path(@category) %>
+
+  <table class="words">
+    <thead>
+    <tr>
+      <th>Word</th>
+      <th>Type</th>
+      <th>Translations</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @category.words.includes(:wordable, translations: [:wordable]).each do |word| %>
+      <tr>
+        <td><%= link_to word.wordable.name, word_path(word), target: '_blank' %></td>
+        <td><%= word.wordable_type %></td>
+        <td><%= word.translations.map { |translation| translation.wordable.name } %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
