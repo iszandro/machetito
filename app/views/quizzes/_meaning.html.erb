@@ -1,0 +1,11 @@
+<h1 class="word"><%= @view_model.word.title %></h1>
+<h2><%= @view_model.word.subtitle %></h2>
+
+<p class="quiz-description">
+  ¿Cúal es el significado de la palabra?
+</p>
+
+<%= form_with(model: @view_model, url: @view_model.form_path, local: true, method: :put) do |f| %>
+  <%= f.text_field :answer, autofocus: true, autocomplete: 'off' %>
+  <%= f.submit 'Submit' %>
+<% end %>

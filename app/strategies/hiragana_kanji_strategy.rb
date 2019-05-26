@@ -1,9 +1,9 @@
-class KanjiStrategy
+class HiraganaKanjiStrategy
   def initialize(word)
     @word = word
   end
 
   def valid?(value)
-    @word.wordable.meta['kanji'] == value
+    @word.wordable.name == value
   end
 end
