@@ -1,0 +1,10 @@
+<h1 class="word"><%= @view_model.word.title %></h1>
+
+<p class="quiz-description">
+  ¿Cúal es el hiragana de la palabra?
+</p>
+
+<%= form_with(model: @view_model, url: @view_model.form_path, local: true, method: :put) do |f| %>
+  <%= f.text_field :answer, autofocus: true, autocomplete: 'off' %>
+  <%= f.submit 'Submit' %>
+<% end %>

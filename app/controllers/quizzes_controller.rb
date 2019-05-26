@@ -5,8 +5,7 @@ class QuizzesController < ApplicationController
     service = CreateQuizPlan.new(@category, repository)
     plan = service.perform
 
-    @strategy = plan.strategy_class_name
-    @word = plan.word
+    @view_model = QuizPresenter.new(plan)
   end
 
   def update
