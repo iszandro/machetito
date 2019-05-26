@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 2019_05_23_023727) do
 
   create_table "expressions", force: :cascade do |t|
     t.string "name"
-    t.string "language"
-    t.jsonb "meta"
+    t.string "language", null: false
+    t.jsonb "meta", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
