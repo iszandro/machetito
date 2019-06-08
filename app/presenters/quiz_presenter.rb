@@ -3,7 +3,8 @@ class QuizPresenter
     MeaningStrategy => Quizzes::MeaningPresenter,
     HiraganaStrategy => Quizzes::HiraganaPresenter,
     MeaningKanjiStrategy => Quizzes::MeaningKanjiPresenter,
-    HiraganaKanjiStrategy => Quizzes::HiraganaKanjiPresenter
+    HiraganaKanjiStrategy => Quizzes::HiraganaKanjiPresenter,
+    GroupStrategy => Quizzes::GroupPresenter
   }.freeze
 
   delegate :partial, :to_model, to: :word
