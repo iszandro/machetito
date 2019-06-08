@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_23_023727) do
+ActiveRecord::Schema.define(version: 2019_06_08_011526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,10 +61,11 @@ ActiveRecord::Schema.define(version: 2019_05_23_023727) do
   create_table "kanjis", force: :cascade do |t|
     t.string "name"
     t.string "language", default: "jp"
-    t.string "readings", default: [], array: true
     t.jsonb "meta", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "on_yomi", default: [], array: true
+    t.string "kun_yomi", default: [], array: true
   end
 
   create_table "nouns", force: :cascade do |t|
