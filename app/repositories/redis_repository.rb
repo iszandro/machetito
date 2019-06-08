@@ -18,6 +18,6 @@ class RedisRepository
   private
 
   def redis
-    @_redis = Redis.new
+    $redis
   end
 end
