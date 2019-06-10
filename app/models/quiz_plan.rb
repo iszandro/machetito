@@ -11,6 +11,10 @@ class QuizPlan
     @_corrects ||= @plan[:corrects]
   end
 
+  def finished?
+    size == index
+  end
+
   def mistakes
     @_mistakes ||= @plan[:mistakes]
   end

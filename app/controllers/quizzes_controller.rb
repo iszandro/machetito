@@ -3,6 +3,7 @@ class QuizzesController < ApplicationController
 
   def show
     quiz_plan = QuizPlan.new(repository.fetch_plan, words)
+    return redirect_to category_quiz_result_path(@category) if quiz_plan.finished?
     @view_model = QuizPresenter.new(quiz_plan)
   end
 
@@ -25,6 +26,7 @@ class QuizzesController < ApplicationController
 
   def update
     quiz_plan = QuizPlan.new(repository.fetch_plan, words)
+    return redirect_to category_quiz_result_path(@category) if quiz_plan.finished?
 
     if quiz_plan.strategy.valid?(quiz_params[:answer])
       quiz_plan.corrects << [quiz_plan.word.id, quiz_plan.strategy_class_name, quiz_params[:answer]]
