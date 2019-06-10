@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   root to: 'categories#index'
   resources :categories, only: %i[index show] do
-    resource :quiz, only: %i[show update]
+    resource :quiz, only: %i[show update create] do
+      resource :result, only: :show
+    end
   end
   resources :words, only: %i[show]
 end

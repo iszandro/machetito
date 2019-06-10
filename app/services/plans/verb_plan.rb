@@ -10,8 +10,8 @@ module Plans
 
       plan << [word.id, 'GroupStrategy'] if word.wordable.meta['group']
       if word.wordable.meta['kanji']
-        plan << [word.id, 'MeaningKanjiStrategy']
-        plan << [word.id, 'HiraganaKanjiStrategy']
+        # plan << [word.id, 'MeaningKanjiStrategy']
+        # plan << [word.id, 'HiraganaKanjiStrategy']
       end
 
       plan

@@ -1,5 +1,5 @@
 class QuizPlan
-  attr_reader :index
+  attr_reader :index, :words
 
   def initialize(plan, words)
     @plan = plan

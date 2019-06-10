@@ -1,0 +1,35 @@
+<h1 class="result"><%= @view_model.result %></h1>
+
+<%= link_to 'Home', root_path %>
+<%= link_to @view_model.category.display_name, category_path(@view_model.category) %>
+<%= button_to 'Try again', category_quiz_path(@view_model.category) %>
+
+<% if @view_model.mistakes? %>
+  <%= button_to 'Try only mistakes', category_quiz_path(@view_model.category), params: { mistakes: true } %>
+<% end %>
+
+<h2>Corrects</h2>
+<% if @view_model.corrects? %>
+  <ul class="correct-results">
+    <% @view_model.corrects.each do |result| %>
+      <li class="correct">
+        <%= result[:word] %> => <%= result[:answer] %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No correct answers</p>
+<% end %>
+
+<h2>Mistakes</h2>
+<% if @view_model.mistakes? %>
+  <ul class="mistakes-results">
+    <% @view_model.mistakes.each do |result| %>
+      <li class="correct">
+        <%= result[:word] %> => <%= result[:answer] %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No mistakes</p>
+<% end %>

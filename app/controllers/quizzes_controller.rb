@@ -2,32 +2,41 @@ class QuizzesController < ApplicationController
   before_action :set_category
 
   def show
-    service = CreateQuizPlan.new(@category, repository)
-    plan = service.perform
+    quiz_plan = QuizPlan.new(repository.fetch_plan, words)
+    @view_model = QuizPresenter.new(quiz_plan)
+  end
 
-    @view_model = QuizPresenter.new(plan)
+  def create
+    if params[:mistakes]
+      quiz_plan = QuizPlan.new(repository.fetch_plan, [])
+
+      if quiz_plan.mistakes
+        mistaken_words = quiz_plan.mistakes.map(&:first)
+        CreateQuizPlan.new(@category, repository, words.find(mistaken_words)).perform
+      else
+        CreateQuizPlan.new(@category, repository, words).perform
+      end
+    else
+      CreateQuizPlan.new(@category, repository, words).perform
+    end
+
+    redirect_to category_quiz_path(@category)
   end
 
   def update
-    quiz_plan = QuizPlan.new(
-      repository.fetch_plan,
-      @category.words.includes(:wordable, translations: %i[wordable])
-    )
+    quiz_plan = QuizPlan.new(repository.fetch_plan, words)
 
     if quiz_plan.strategy.valid?(quiz_params[:answer])
-      quiz_plan.corrects << [quiz_plan.word.id, quiz_plan.strategy_class_name]
+      quiz_plan.corrects << [quiz_plan.word.id, quiz_plan.strategy_class_name, quiz_params[:answer]]
     else
-      quiz_plan.mistakes << [quiz_plan.word.id, quiz_plan.strategy_class_name]
-    end
-
-    if quiz_plan.index + 1 == quiz_plan.size
-      # Redirect to result page
-      repository.delete_plan
-      return redirect_to category_path(@category)
+      quiz_plan.mistakes << [quiz_plan.word.id, quiz_plan.strategy_class_name, quiz_params[:answer]]
     end
 
     repository.save_plan(plan: quiz_plan.plan_array, current: quiz_plan.index + 1, size: quiz_plan.size,
                          mistakes: quiz_plan.mistakes, corrects: quiz_plan.corrects)
+
+    return redirect_to category_quiz_result_path(@category) if quiz_plan.index + 1 == quiz_plan.size
+
     redirect_to category_quiz_path(@category)
   end
 
@@ -43,5 +52,9 @@ class QuizzesController < ApplicationController
 
   def quiz_params
     params.require(:word).permit(:id, :answer, :strategy)
+  end
+
+  def words
+    @category.words.includes(:wordable, translations: %i[wordable])
   end
 end

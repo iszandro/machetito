@@ -11,7 +11,7 @@
 <% end %>
 
 <% if @category.words.any? %>
-  <%= link_to 'Start Quiz', category_quiz_path(@category) %>
+  <%= button_to 'Start Quiz', category_quiz_path(@category) %>
 
   <table class="words">
     <thead>
