@@ -1,0 +1,7 @@
+<script type="text/javascript" charset="utf-8">
+  var hiraganaInput = document.querySelector('.wanakana');
+  var katakanaInput = document.querySelector('.wanakana-katakana');
+
+  hiraganaInput && bind(hiraganaInput);
+  katakanaInput && bind(katakanaInput, {IMEMode: 'toKatakana'});
+</script>
