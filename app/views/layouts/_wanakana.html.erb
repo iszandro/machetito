@@ -2,6 +2,6 @@
   var hiraganaInput = document.querySelector('.wanakana');
   var katakanaInput = document.querySelector('.wanakana-katakana');
 
-  hiraganaInput && bind(hiraganaInput);
-  katakanaInput && bind(katakanaInput, {IMEMode: 'toKatakana'});
+  hiraganaInput && wanakana.bind(hiraganaInput);
+  katakanaInput && wanakana.bind(katakanaInput, {IMEMode: 'toKatakana'});
 </script>
