@@ -5,6 +5,6 @@
 </p>
 
 <%= form_with(model: @view_model, url: @view_model.form_path, local: true, method: :put) do |f| %>
-  <%= f.text_field :answer, autofocus: true, autocomplete: 'off', class: 'wanakana' %>
+  <%= f.text_field :answer, autofocus: true, autocomplete: 'off', class: @view_model.word.kana_input_class %>
   <%= f.submit 'Submit' %>
 <% end %>

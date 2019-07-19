@@ -6,11 +6,27 @@ module Quizzes
       @word = word
     end
 
+    def hiragana?
+      !katakana?
+    end
+
+    def katakana?
+      @word.wordable.meta['katakana']
+    end
+
+    def kana_input_class
+      return 'wanakana-katakana' if katakana?
+
+      'wanakana'
+    end
+
     def partial
       'hiragana'
     end
 
     def title
+      return "#{translation.wordable.name} => #{examples}" if examples?
+
       translation.wordable.name
     end
 
@@ -19,6 +35,14 @@ module Quizzes
     end
 
     private
+
+    def examples?
+      translation.wordable.meta['examples'].present?
+    end
+
+    def examples
+      translation.wordable.meta['examples']
+    end
 
     def translation
       @_translation ||= @word.translations.shuffle.first

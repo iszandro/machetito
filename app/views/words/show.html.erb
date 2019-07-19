@@ -11,13 +11,13 @@
 </p>
 
 <p class="word-example">
-  <%= @word.wordable.meta['example'] %>
+  <%= @word.wordable.meta['examples'] %>
 </p>
 
 <ul class="translations">
   <% @word.translations.each do |translation| %>
     <li class="translation">
-      <%= [translation.wordable.name, translation.wordable.meta['description']].compact.join(' => ') %>
+      <%= [translation.wordable.name, translation.wordable.meta['examples']].compact.join(' => ') %>
     </li>
   <% end %>
 </ul>
