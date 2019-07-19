@@ -1,0 +1,2 @@
+class BracketWord < ApplicationRecord
+end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_08_011526) do
+ActiveRecord::Schema.define(version: 2019_07_19_175544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,11 +23,29 @@ ActiveRecord::Schema.define(version: 2019_06_08_011526) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "bracket_words", force: :cascade do |t|
+    t.string "language", null: false
+    t.jsonb "meta", default: {}
+    t.string "sentences", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.string "display_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "category_exercises", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "exercise_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id", "exercise_id"], name: "index_category_exercises_on_category_id_and_exercise_id", unique: true
+    t.index ["category_id"], name: "index_category_exercises_on_category_id"
+    t.index ["exercise_id"], name: "index_category_exercises_on_exercise_id"
   end
 
   create_table "category_subcategories", force: :cascade do |t|
@@ -48,6 +66,14 @@ ActiveRecord::Schema.define(version: 2019_06_08_011526) do
     t.index ["category_id", "word_id"], name: "index_category_words_on_category_id_and_word_id", unique: true
     t.index ["category_id"], name: "index_category_words_on_category_id"
     t.index ["word_id"], name: "index_category_words_on_word_id"
+  end
+
+  create_table "exercises", force: :cascade do |t|
+    t.string "exerciseable_type"
+    t.bigint "exerciseable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exerciseable_type", "exerciseable_id"], name: "index_exercises_on_exerciseable_type_and_exerciseable_id"
   end
 
   create_table "expressions", force: :cascade do |t|
@@ -76,10 +102,29 @@ ActiveRecord::Schema.define(version: 2019_06_08_011526) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sentences", force: :cascade do |t|
+    t.string "answers", default: [], array: true
+    t.string "clues", default: [], array: true
+    t.jsonb "example", default: {}
+    t.string "language", null: false
+    t.jsonb "meta", default: {}
+    t.boolean "multiline", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "verbs", force: :cascade do |t|
     t.string "name"
     t.string "language", null: false
     t.jsonb "meta", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "word_tables", force: :cascade do |t|
+    t.string "language", null: false
+    t.jsonb "meta", default: {}
+    t.string "words", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -102,6 +147,8 @@ ActiveRecord::Schema.define(version: 2019_06_08_011526) do
     t.index ["wordable_type", "wordable_id"], name: "index_words_on_wordable_type_and_wordable_id"
   end
 
+  add_foreign_key "category_exercises", "categories"
+  add_foreign_key "category_exercises", "exercises"
   add_foreign_key "category_subcategories", "categories"
   add_foreign_key "category_subcategories", "categories", column: "subcategory_id"
   add_foreign_key "category_words", "categories"

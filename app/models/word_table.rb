@@ -1,0 +1,2 @@
+class WordTable < ApplicationRecord
+end
