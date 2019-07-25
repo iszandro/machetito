@@ -1,11 +1,18 @@
-<h1 class="word"><%= @view_model.word.title %></h1>
-<h2><%= @view_model.word.subtitle %></h2>
+<h1 class="word title is-1"><%= @view_model.word.title %></h1>
+<h2 class="subtitle is-2"><%= @view_model.word.subtitle %></h2>
 
-<p class="quiz-description">
+<p class="quiz-description subtitle is-5">
   ¿Cúal es el significado de la palabra?
 </p>
 
 <%= form_with(model: @view_model, url: @view_model.form_path, local: true, method: :put) do |f| %>
-  <%= f.text_field :answer, autofocus: true, autocomplete: 'off' %>
-  <%= f.submit 'Submit' %>
+  <div class="field has-addons">
+    <div class="control is-expanded">
+      <%= f.text_field :answer, autofocus: true, autocomplete: 'off', class: 'input' %>
+    </div>
+
+    <div class="control">
+      <%= f.submit 'Submit', class: 'button is-info' %>
+    </div>
+  </div>
 <% end %>

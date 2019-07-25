@@ -11,6 +11,8 @@ module Quizzes
     end
 
     def title
+      return "#{@word.wordable.name} (#{examples})" if examples?
+
       @word.wordable.name
     end
 
@@ -20,6 +22,16 @@ module Quizzes
 
     def subtitle
       @word.wordable.meta['kanji']
+    end
+
+    private
+
+    def examples?
+      @word.wordable.meta['examples'].present?
+    end
+
+    def examples
+      @word.wordable.meta['examples']
     end
   end
 end

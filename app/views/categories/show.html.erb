@@ -1,4 +1,4 @@
-<h1><%= @category.display_name %></h1>
+<h1 class="title"><%= @category.display_name %></h1>
 
 <% if @category.subcategories.any? %>
   <ul class="categories">
@@ -11,9 +11,9 @@
 <% end %>
 
 <% if @category.words.any? %>
-  <%= button_to 'Start Quiz', category_quiz_path(@category) %>
+  <%= button_to 'Start Quiz', category_quiz_path(@category), class: 'button is-info' %>
 
-  <table class="words">
+  <table class="words table is-fullwidth">
     <thead>
     <tr>
       <th>Word</th>

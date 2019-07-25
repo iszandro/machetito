@@ -1,35 +1,71 @@
-<h1 class="result"><%= @view_model.result %></h1>
+<h1 class="result title"><%= @view_model.result %></h1>
 
-<%= link_to 'Home', root_path %>
-<%= link_to @view_model.category.display_name, category_path(@view_model.category) %>
-<%= button_to 'Try again', category_quiz_path(@view_model.category) %>
+<div class="level">
+  <div class="level-left">
+    <%= link_to 'Home', root_path, class: 'button is-outlined is-info level-item' %>
+    <%= link_to @view_model.category.display_name, category_path(@view_model.category), class: 'button is-outlined is-info level-item' %>
+  </div>
+</div>
 
-<% if @view_model.mistakes? %>
-  <%= button_to 'Try only mistakes', category_quiz_path(@view_model.category), params: { mistakes: true } %>
-<% end %>
 
-<h2>Corrects</h2>
-<% if @view_model.corrects? %>
-  <ul class="correct-results">
-    <% @view_model.corrects.each do |result| %>
-      <li class="correct">
-        <%= result[:word] %> => <%= result[:answer] %>
-      </li>
+<div class="columns is-mobile">
+  <div class="column">
+    <div class="level">
+      <h2 class="subtitle">Corrects</h2>
+      <%= button_to 'Try all again', category_quiz_path(@view_model.category), class: 'button is-info level-item' %>
+    </div>
+
+    <% if @view_model.corrects? %>
+      <table class="table is-fullwidth">
+        <thead>
+        <tr>
+          <th>Word</th>
+          <th>Answer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @view_model.corrects.each do |result| %>
+          <tr>
+            <td><%= result[:word] %></td>
+            <td><%= result[:answer] %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p class="subtitle is-5">No correct answers</p>
     <% end %>
-  </ul>
-<% else %>
-  <p>No correct answers</p>
-<% end %>
+  </div>
 
-<h2>Mistakes</h2>
-<% if @view_model.mistakes? %>
-  <ul class="mistakes-results">
-    <% @view_model.mistakes.each do |result| %>
-      <li class="correct">
-        <%= result[:word] %> => <%= result[:answer] %>
-      </li>
+  <div class="column">
+    <% if @view_model.mistakes? %>
+      <div class="level">
+        <h2 class="subtitle">Mistakes</h2>
+        <%= button_to 'Try only mistakes', category_quiz_path(@view_model.category), params: { mistakes: true }, class: 'button is-danger' %>
+      </div>
+
+      <table class="table is-fullwidth">
+        <thead>
+        <tr>
+          <th>Word</th>
+          <th>Answer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @view_model.mistakes.each do |result| %>
+          <tr>
+            <td><%= result[:word] %></td>
+            <td><%= result[:answer] %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <h2 class="subtitle">Mistakes</h2>
+      <p class="subtitle is-5">No mistakes</p>
     <% end %>
-  </ul>
-<% else %>
-  <p>No mistakes</p>
-<% end %>
+  </div>
+</div>
+
+
+

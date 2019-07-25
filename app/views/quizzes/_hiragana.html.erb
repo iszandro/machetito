@@ -1,10 +1,17 @@
-<h1 class="word"><%= @view_model.word.title %></h1>
+<h1 class="word title is-1"><%= @view_model.word.title %></h1>
 
-<p class="quiz-description">
+<p class="quiz-description subtitle is-5">
   ¿Cúal es el hiragana de la palabra?
 </p>
 
 <%= form_with(model: @view_model, url: @view_model.form_path, local: true, method: :put) do |f| %>
-  <%= f.text_field :answer, autofocus: true, autocomplete: 'off', class: @view_model.word.kana_input_class %>
-  <%= f.submit 'Submit' %>
+  <div class="field has-addons">
+    <div class="control is-expanded">
+      <%= f.text_field :answer, autofocus: true, autocomplete: 'off', class: @view_model.word.kana_input_class %>
+    </div>
+
+    <div class="control">
+      <%= f.submit 'Submit', class: 'button is-info' %>
+    </div>
+  </div>
 <% end %>

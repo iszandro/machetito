@@ -15,9 +15,9 @@ module Quizzes
     end
 
     def kana_input_class
-      return 'wanakana-katakana' if katakana?
+      return 'wanakana-katakana input' if katakana?
 
-      'wanakana'
+      'wanakana input'
     end
 
     def partial
@@ -25,7 +25,7 @@ module Quizzes
     end
 
     def title
-      return "#{translation.wordable.name} => #{examples}" if examples?
+      return "#{translation.wordable.name} (#{examples})" if examples?
 
       translation.wordable.name
     end
