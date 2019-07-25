@@ -1,13 +1,11 @@
 class Category < ApplicationRecord
-  has_many :category_subcategories
-  has_many :category_categories, class_name: 'CategorySubcategory', foreign_key: :subcategory_id
   has_many :category_words, dependent: :delete_all
   has_many :category_exercises, dependent: :delete_all
 
-  has_many :subcategories, through: :category_subcategories
-  has_many :parents, through: :category_categories, source: :category
   has_many :words, through: :category_words
   has_many :exercises, through: :category_exercises
+  belongs_to :parent, class_name: 'Category'
+  has_many :subcategories, class_name: 'Category', foreign_key: :parent_id
 
-  scope :with_no_parents, -> { where.not(id: CategorySubcategory.pluck(:subcategory_id)) }
+  scope :with_no_parents, -> { where(parent_id: nil) }
 end
