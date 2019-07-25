@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_25_172248) do
+ActiveRecord::Schema.define(version: 2019_07_25_182605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,16 +48,6 @@ ActiveRecord::Schema.define(version: 2019_07_25_172248) do
     t.index ["category_id", "exercise_id"], name: "index_category_exercises_on_category_id_and_exercise_id", unique: true
     t.index ["category_id"], name: "index_category_exercises_on_category_id"
     t.index ["exercise_id"], name: "index_category_exercises_on_exercise_id"
-  end
-
-  create_table "category_subcategories", force: :cascade do |t|
-    t.bigint "category_id"
-    t.bigint "subcategory_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id", "subcategory_id"], name: "index_category_subcategories_on_category_id_and_subcategory_id", unique: true
-    t.index ["category_id"], name: "index_category_subcategories_on_category_id"
-    t.index ["subcategory_id"], name: "index_category_subcategories_on_subcategory_id"
   end
 
   create_table "category_words", force: :cascade do |t|
@@ -160,8 +150,6 @@ ActiveRecord::Schema.define(version: 2019_07_25_172248) do
   add_foreign_key "categories", "categories", column: "parent_id"
   add_foreign_key "category_exercises", "categories"
   add_foreign_key "category_exercises", "exercises"
-  add_foreign_key "category_subcategories", "categories"
-  add_foreign_key "category_subcategories", "categories", column: "subcategory_id"
   add_foreign_key "category_words", "categories"
   add_foreign_key "category_words", "words"
   add_foreign_key "word_translations", "words"
