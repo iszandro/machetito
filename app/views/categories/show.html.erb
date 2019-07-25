@@ -1,6 +1,14 @@
-<h1 class="title"><%= @category.display_name %></h1>
+<nav class="breadcrumb is-large" aria-label="breadcrumbs">
+  <ul>
+    <li><%= link_to 'Categories', root_path %></li>
+    <% @category.parents.each do |parent| %>
+      <li><%= link_to parent.display_name, category_path(parent) %></li>
+    <% end %>
+    <%= content_tag :li, link_to(@category.display_name, category_path(@category), aria: { current: 'page' }), class: 'is-active' %>
+  </ul>
+</nav>
 
-<% if @category.subcategories.any? %>
+<% if @category.subcategories? %>
   <ul class="categories">
     <% @category.subcategories.each do |subcategory| %>
       <li class="category">
@@ -10,7 +18,7 @@
   </ul>
 <% end %>
 
-<% if @category.words.any? %>
+<% if @category.words? %>
   <%= button_to 'Start Quiz', category_quiz_path(@category), class: 'button is-info' %>
 
   <table class="words table is-fullwidth">

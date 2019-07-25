@@ -4,6 +4,6 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.includes(:subcategories, :words).find(params[:id])
+    @category = CategoryPresenter.new(Category.includes(:subcategories, :words).find(params[:id]))
   end
 end
