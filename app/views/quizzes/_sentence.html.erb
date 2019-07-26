@@ -1,9 +1,11 @@
 <h3 class="subtitle is-size-3">Example</h3>
 
-<p class="is-size-4">
-  <%= @view_model.resource.example_clues %><br>
-  <strong>=> <%= @view_model.resource.example %></strong>
-</p>
+<% @view_model.resource.examples.each do |example| %>
+  <p class="is-size-4">
+    <%= example['clues'].join(' / ') %><br>
+    <strong>=> <%= example['sentence'] %></strong>
+  </p>
+<% end %>
 <br>
 
 <h3 class="subtitle is-size-3">Exercise</h3>

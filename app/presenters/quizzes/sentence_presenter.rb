@@ -12,12 +12,8 @@ module Quizzes
       @exercise.exerciseable.clues.join(' / ')
     end
 
-    def example
-      @exercise.exerciseable.example['sentence']
-    end
-
-    def example_clues
-      @exercise.exerciseable.example['clues'].join(' / ')
+    def examples
+      @exercise.exerciseable.examples
     end
 
     def partial
