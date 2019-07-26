@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_25_182605) do
+ActiveRecord::Schema.define(version: 2019_07_26_173146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 2019_07_25_182605) do
     t.boolean "multiline", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "examples", default: []
   end
 
   create_table "suffixes", force: :cascade do |t|
