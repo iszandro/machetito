@@ -4,7 +4,7 @@ module Results
 
     def result(word, answer)
       {
-        word: word.translations.map { |t| t.wordable.name },
+        resource: word.translations.map { |t| t.wordable.name },
         answer: answer
       }
     end

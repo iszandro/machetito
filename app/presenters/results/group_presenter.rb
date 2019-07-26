@@ -4,7 +4,7 @@ module Results
 
     def result(word, answer)
       {
-        word: "#{word.wordable.name} (group)",
+        resource: "#{word.wordable.name} (group)",
         answer: answer
       }
     end

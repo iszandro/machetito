@@ -2,11 +2,8 @@ class ResultsController < ApplicationController
   before_action :ensure_category
 
   def show
-    quiz_plan = QuizPlan.new(
-      repository.fetch_plan,
-      @category.words.includes(:wordable, translations: %i[wordable])
-    )
-    @view_model = ResultPresenter.new(quiz_plan, @category)
+    quiz_plan = QuizPlan.new(repository.fetch_plan, @category)
+    @view_model = ResultPresenter.new(quiz_plan, @category, view_context)
   end
 
   private

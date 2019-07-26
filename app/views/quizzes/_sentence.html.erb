@@ -1,10 +1,16 @@
-<h1 class="word title is-1 has-text-centered"><%= @view_model.resource.title %></h1>
+<h3 class="subtitle is-size-3">Example</h3>
 
-<p class="quiz-description subtitle is-5">
-  ¿Cúal es el hiragana de la palabra?
+<p class="is-size-4">
+  <%= @view_model.resource.example_clues %><br>
+  <strong>=> <%= @view_model.resource.example %></strong>
 </p>
+<br>
+
+<h3 class="subtitle is-size-3">Exercise</h3>
 
 <%= form_with(model: @view_model, url: @view_model.form_path, local: true, method: :put) do |f| %>
+  <strong class="is-size-4"><%= @view_model.resource.clues %></strong>
+
   <div class="field has-addons">
     <div class="control is-expanded">
       <%= f.text_field :answer, autofocus: true, autocomplete: 'off', class: 'wanakana input' %>

@@ -12,21 +12,21 @@
   <div class="column">
     <div class="level">
       <h2 class="subtitle">Corrects</h2>
-      <%= button_to 'Try all again', category_quiz_path(@view_model.category), class: 'button is-info level-item' %>
+      <%= @view_model.try_button %>
     </div>
 
     <% if @view_model.corrects? %>
       <table class="table is-fullwidth">
         <thead>
         <tr>
-          <th>Word</th>
+          <th><%= @view_model.resource_header %></th>
           <th>Answer</th>
         </tr>
         </thead>
         <tbody>
         <% @view_model.corrects.each do |result| %>
           <tr>
-            <td><%= result[:word] %></td>
+            <td><%= result[:resource] %></td>
             <td><%= result[:answer] %></td>
           </tr>
         <% end %>
@@ -41,20 +41,20 @@
     <% if @view_model.mistakes? %>
       <div class="level">
         <h2 class="subtitle">Mistakes</h2>
-        <%= button_to 'Try only mistakes', category_quiz_path(@view_model.category), params: { mistakes: true }, class: 'button is-danger' %>
+        <%= @view_model.try_mistakes_button %>
       </div>
 
       <table class="table is-fullwidth">
         <thead>
         <tr>
-          <th>Word</th>
+          <th><%= @view_model.resource_header %></th>
           <th>Answer</th>
         </tr>
         </thead>
         <tbody>
         <% @view_model.mistakes.each do |result| %>
           <tr>
-            <td><%= result[:word] %></td>
+            <td><%= result[:resource] %></td>
             <td><%= result[:answer] %></td>
           </tr>
         <% end %>

@@ -8,6 +8,10 @@
   </ul>
 </nav>
 
+<% if @category.exercises? %>
+  <%= button_to 'Start Exercises Quiz', category_quiz_path(@category, exercises: true), class: 'button is-info' %>
+<% end %>
+
 <% if @category.subcategories? %>
   <ul class="categories">
     <% @category.subcategories.each do |subcategory| %>

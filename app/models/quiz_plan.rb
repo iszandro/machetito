@@ -1,9 +1,9 @@
 class QuizPlan
-  attr_reader :index, :words
+  attr_reader :index, :resources
 
-  def initialize(plan, words)
+  def initialize(plan, category)
     @plan = plan
-    @words = words
+    @category = category
     @index = @plan[:current]
   end
 
@@ -19,8 +19,24 @@ class QuizPlan
     @_mistakes ||= @plan[:mistakes]
   end
 
+  def mistakes?
+    mistakes.any?
+  end
+
   def plan_array
     @plan[:plan]
+  end
+
+  def resource
+    @_resource ||= resource_scope.find(resource_id)
+  end
+
+  def resources
+    resource_scope
+  end
+
+  def scope
+    @plan[:scope]
   end
 
   def size
@@ -28,15 +44,11 @@ class QuizPlan
   end
 
   def strategy
-    @_strategy = strategy_class&.new(word)
+    @_strategy = strategy_class&.new(resource)
   end
 
   def strategy_class_name
     current&.last
-  end
-
-  def word
-    @_word ||= @words.find(word_id)
   end
 
   private
@@ -45,11 +57,20 @@ class QuizPlan
     plan_array[index]
   end
 
-  def strategy_class
-    strategy_class_name&.safe_constantize
+  def resource_id
+    current&.first
   end
 
-  def word_id
-    current&.first
+  def resource_scope
+    @_resource_scope ||= case scope
+                         when 'exercises' then
+                           @category.exercises.includes(:exerciseable)
+                         else
+                           @category.words.includes(:wordable, translations: %i[wordable])
+                         end
+  end
+
+  def strategy_class
+    strategy_class_name&.safe_constantize
   end
 end

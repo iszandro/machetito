@@ -4,10 +4,11 @@ class QuizPresenter
     HiraganaStrategy => Quizzes::HiraganaPresenter,
     MeaningKanjiStrategy => Quizzes::MeaningKanjiPresenter,
     HiraganaKanjiStrategy => Quizzes::HiraganaKanjiPresenter,
-    GroupStrategy => Quizzes::GroupPresenter
+    GroupStrategy => Quizzes::GroupPresenter,
+    SentenceStrategy => Quizzes::SentencePresenter
   }.freeze
 
-  delegate :partial, :to_model, to: :word
+  delegate :partial, :to_model, to: :resource
 
   def initialize(plan)
     @plan = plan
@@ -17,7 +18,7 @@ class QuizPresenter
     %i[category quiz]
   end
 
-  def word
-    @_word ||= PRESENTERS[@plan.strategy.class].new(@plan.word)
+  def resource
+    @_resource ||= PRESENTERS[@plan.strategy.class].new(@plan.resource)
   end
 end

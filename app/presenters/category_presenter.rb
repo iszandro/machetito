@@ -1,10 +1,15 @@
 # frozen_string_literal: true
 
 class CategoryPresenter
-  delegate :display_name, :to_model, :to_param, :subcategories, :words, to: :@category
+  delegate :display_name, :exercises, :to_model, :to_param, :subcategories,
+    :words, to: :@category
 
   def initialize(category)
     @category = category
+  end
+
+  def exercises?
+    exercises.any?
   end
 
   def parents
