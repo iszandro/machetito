@@ -18,7 +18,7 @@ class ResultPresenter
 
   def corrects
     @plan.corrects.map do |correct|
-      word = @plan.words.find(correct.first)
+      word = @plan.words.find { |word| word.id == correct.first.to_i }
       RESULTS[correct.second].result(word, correct.last)
     end
   end
@@ -28,9 +28,9 @@ class ResultPresenter
   end
 
   def mistakes
-    @plan.mistakes.map do |correct|
-      word = @plan.words.find(correct.first)
-      RESULTS[correct.second].result(word, correct.last)
+    @plan.mistakes.map do |mistake|
+      word = @plan.words.find { |word| word.id == mistake.first.to_i }
+      RESULTS[mistake.second].result(word, mistake.last)
     end
   end
 
