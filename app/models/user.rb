@@ -5,6 +5,10 @@ class User < ApplicationRecord
 
   before_validation :create_default_password, on: :create
 
+  def invite_accepted?
+    !invite_accepted_at.nil?
+  end
+
   private
 
   def create_default_password

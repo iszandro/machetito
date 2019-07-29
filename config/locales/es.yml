@@ -1,0 +1,14 @@
+es:
+  app:
+    page_title:
+      default: Machetito
+      custom: "Machetito | %{custom}"
+  invitations:
+    show:
+      page_title: Bienvenido(a) a Machetito
+      title: Bienvenido(a) a Machetito
+      submit: Guardar Usuario
+  errors:
+    invitations:
+      not_valid: "La invitación ya no es válida. Por favor inicia sesión."
+      already_accepted: "La invitación ya ha sido aceptada. Por favor inicia sesión."
