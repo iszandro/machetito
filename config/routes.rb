@@ -1,5 +1,11 @@
+# frozen_string_literal: true
+
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  mount Sidekiq::Web => '/sidekiq'
+
+  devise_for :users
 
   root to: 'categories#index'
   resources :categories, only: %i[index show] do
