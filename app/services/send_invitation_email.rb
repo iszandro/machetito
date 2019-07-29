@@ -7,7 +7,7 @@ module SendInvitationEmail
     delay.perform(user_id)
   end
 
-  def perform
+  def perform(user_id)
     user = User.find(user_id)
     UserMailer.with(email: user.email, invite_token: user.invite_token).invitation_email.deliver_now
   end
