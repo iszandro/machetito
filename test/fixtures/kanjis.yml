@@ -3,9 +3,11 @@
 one_jp:
   name: 一
   language: jp
-  readings: ['いち']
+  on_yomi: ['いち', 'いつ']
+  kun_yomi: ['ひと']
 
 two_jp:
   name: 二
   language: jp
-  readings: ['に']
+  on_yomi: ['ふた']
+  kun_yomi: ['に', 'じ']

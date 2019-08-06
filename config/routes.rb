@@ -7,19 +7,22 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  devise_scope :user do
-    root to: 'devise/sessions#new'
-    resources :invitations, only: %i(show update)
+  resources :invitations, only: %i(show update)
 
-    authenticated :user do
-      root to: 'categories#index'
+  authenticated :user do
+    root to: 'users/categories#index'
+  end
 
-      resources :categories, only: %i[index show] do
-        resource :quiz, only: %i[show update create] do
-          resource :result, only: :show
-        end
+  unauthenticated do
+    root to: 'home#index'
+  end
+
+  scope module: :users do
+    resources :categories, only: %i[index show] do
+      resource :quiz, only: %i[show update create] do
+        resource :result, only: :show
       end
-      resources :words, only: %i[show]
     end
+    resources :words, only: %i[show]
   end
 end
