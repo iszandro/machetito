@@ -3,6 +3,12 @@ en:
     page_title:
       default: Machetito
       custom: "Machetito | %{custom}"
+  devise:
+    sessions:
+      new:
+        page_title: Log in to Machetito
+        title: Log in
+        submit: Log in
   invitations:
     show:
       page_title: Welcome to Machetito

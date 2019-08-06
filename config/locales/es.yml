@@ -3,6 +3,12 @@ es:
     page_title:
       default: Machetito
       custom: "Machetito | %{custom}"
+  devise:
+    sessions:
+      new:
+        page_title: Inicia sesión en Machetito
+        title: Inica sesión
+        submit: Iniciar sesión
   invitations:
     show:
       page_title: Bienvenido(a) a Machetito
