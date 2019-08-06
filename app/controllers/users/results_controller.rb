@@ -16,7 +16,7 @@ module Users
     end
 
     def repository
-      RedisRepository.new("machetito-#{@category.id}")
+      RedisRepository.new("machetito-#{current_user.id}-#{@category.id}")
     end
   end
 end
