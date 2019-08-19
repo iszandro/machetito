@@ -2,25 +2,38 @@
 
 [![Codeship Status for iszandro/machetito](https://app.codeship.com/projects/d55f3fe0-9a1e-0137-e017-76660cd27cc4/status?branch=master)](https://app.codeship.com/projects/358149)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+`machetito` is an app to help you practice and learn Japanese words. Quizzes will help you to write the correct word, hiragana, katakana or meaning.
 
-Things you may want to cover:
+## Ruby version
 
-* Ruby version
+`Ruby 2.6.3`
 
-* System dependencies
+## System dependencies
 
-* Configuration
+* `PostgreSQL`
+* `Redis`
+* `Chrome`, for system tests
 
-* Database creation
+## Configuration
 
-* Database initialization
+```bash
+$ bundle exec bin/setup
+```
 
-* How to run the test suite
+## `Sidekiq`
+`machetito` uses `Sidekiq` as its enqueue backend.
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+$ bundle exec sidekiq
+```
 
-* Deployment instructions
+## How to run the test suite
 
-* ...
+```bash
+$ bundle exec rails test
+$ bundle exec rails test:system
+```
+
+## Deployment instructions
+
+Once a PR is merged into `master`, it will be deployed to `Heroku`
