@@ -1,47 +1,49 @@
-<nav class="breadcrumb is-large" aria-label="breadcrumbs">
-  <ul>
-    <li><%= link_to 'Categories', root_path %></li>
-    <% @category.parents.each do |parent| %>
-      <li><%= link_to parent.display_name, category_path(parent) %></li>
-    <% end %>
-    <%= content_tag :li, link_to(@category.display_name, category_path(@category), aria: { current: 'page' }), class: 'is-active' %>
-  </ul>
-</nav>
 
-<% if @category.exercises? %>
-  <%= button_to 'Start Exercises Quiz', category_quiz_path(@category, exercises: true), class: 'button is-info' %>
-<% end %>
+<div class='container'>
+  <nav class="breadcrumb is-large" aria-label="breadcrumbs">
+    <ul>
+      <li><%= link_to 'Categories', root_path %></li>
+      <% @category.parents.each do |parent| %>
+        <li><%= link_to parent.display_name, category_path(parent) %></li>
+      <% end %>
+      <%= content_tag :li, link_to(@category.display_name, category_path(@category), aria: { current: 'page' }), class: 'is-active' %>
+    </ul>
+  </nav>
+  <% if @category.exercises? %>
+    <%= button_to 'Start Exercises Quiz', category_quiz_path(@category, exercises: true), class: 'button is-info' %>
+  <% end %>
 
-<% if @category.subcategories? %>
-  <ul class="categories">
-    <% @category.subcategories.each do |subcategory| %>
-      <li class="category">
-        <%= link_to subcategory.display_name, category_path(subcategory) %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+  <% if @category.subcategories? %>
+    <ul class="categories">
+      <% @category.subcategories.each do |subcategory| %>
+        <li class="category">
+          <%= link_to subcategory.display_name, category_path(subcategory) %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 
-<% if @category.words? %>
-  <%= button_to 'Start Quiz', category_quiz_path(@category), class: 'button is-info' %>
+  <% if @category.words? %>
+    <%= button_to 'Start Quiz', category_quiz_path(@category), class: 'button is-info' %>
 
-  <table class="words table is-fullwidth">
-    <thead>
-    <tr>
-      <th>Word</th>
-      <th>Type</th>
-      <th>Translations</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <% @category.words.includes(:wordable, translations: [:wordable]).each do |word| %>
+    <table class="words table is-fullwidth">
+      <thead>
       <tr>
-        <td><%= link_to word.wordable.name, word_path(word), target: '_blank' %></td>
-        <td><%= word.wordable_type %></td>
-        <td><%= word.translations.map { |translation| translation.wordable.name } %></td>
+        <th>Word</th>
+        <th>Type</th>
+        <th>Translations</th>
       </tr>
-    <% end %>
-    </tbody>
-  </table>
-<% end %>
+      </thead>
+
+      <tbody>
+      <% @category.words.includes(:wordable, translations: [:wordable]).each do |word| %>
+        <tr>
+          <td><%= link_to word.wordable.name, word_path(word), target: '_blank' %></td>
+          <td><%= word.wordable_type %></td>
+          <td><%= word.translations.map { |translation| translation.wordable.name } %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

@@ -29,3 +29,13 @@ lesson_1:
   name: lesson 1
   display_name: Lesson 1
   parent: lessons
+
+lesson_19:
+  name: lesson 19
+  display_name: Lesson 19
+  parent: lessons
+
+masu_form:
+  name: masu form
+  display_name: masu_form
+  parent: verbs

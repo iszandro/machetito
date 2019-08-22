@@ -12,13 +12,12 @@
   </head>
 
   <body>
-    <section class="section">
-      <div class="container">
-        <%= render 'layouts/alerts' %>
-        <%= yield %>
-      </div>
+    <%= render 'layouts/nav' %>
+    <section class="section main-section">
+      <%= render 'layouts/alerts' %>
+      <%= yield %>
     </section>
-
     <%= render 'layouts/wanakana' %>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

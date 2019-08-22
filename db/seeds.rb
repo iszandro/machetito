@@ -14,7 +14,12 @@ Category.create([
                   { name: 'verbs', display_name: 'Verbs' },
                   { name: 'adjectives', display_name: 'Adjectives' },
                   { name: 'na adjective', display_name: 'NA Adjective' },
-                  { name: 'lesson 1', display_name: 'Lesson 1' }
+                  { name: 'lesson 1', display_name: 'Lesson 1'}
+                ])
+
+Category.create([
+                  { name: 'masu form', display_name: 'Masu form', parent_id: 4},
+                  { name: 'lesson 19', display_name: 'Lesson 19', parent_id: 2}
                 ])
 
 Word.transaction do
@@ -125,6 +130,7 @@ Word.transaction do
       ])
     }
   ])
+
   Category.find_by(name: 'masu form').words.concat(verbs)
   Category.find_by(name: 'lesson 19').words.concat(verbs)
 end

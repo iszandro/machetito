@@ -8,4 +8,8 @@ module ApplicationHelper
       t("app.page_title.default")
     end
   end
+
+  def categories
+    @categories ||= Category.with_no_parents
+  end
 end
