@@ -9,6 +9,7 @@
       <%= content_tag :li, link_to(@category.display_name, category_path(@category), aria: { current: 'page' }), class: 'is-active' %>
     </ul>
   </nav>
+  <p>hOLA</p>
   <% if @category.exercises? %>
     <%= button_to 'Start Exercises Quiz', category_quiz_path(@category, exercises: true), class: 'button is-info' %>
   <% end %>
