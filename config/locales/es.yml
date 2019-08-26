@@ -8,6 +8,7 @@ es:
       new:
         page_title: Inicia sesión en Machetito
         title: Inica sesión
+        sing_in: Inica sesión
         submit: Iniciar sesión
   invitations:
     show:

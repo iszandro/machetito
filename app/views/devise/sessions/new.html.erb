@@ -1,8 +1,9 @@
+<% content_for :page_title, t('.page_title') %>
 <div class="login">
   <div class="login-card">
     <div class="card-title">
       <h1>
-        <%= t('Log in') %>
+        <%= t('.title') %>
       </h1>
     </div>
     <div class="content">
@@ -25,7 +26,7 @@
         </div>
         <div class="actions">
           <div class="field">
-            <%= f.submit 'sign in', class: 'button' %>
+            <%= f.submit t('.sing_in'), class: 'button' %>
           </div>
           <div class="field">
             <%= render "devise/shared/links" %>
