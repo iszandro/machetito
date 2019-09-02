@@ -1,5 +1,5 @@
 .main-section {
-  min-height: 90vh;
+  min-height: 88vh;
 
   .main-container {
     height: 100%;
@@ -45,5 +45,35 @@
   min-height: 450px;
   h1 {
     font-size: 100px;
+  }
+}
+
+@media only screen and (max-width: 376px) {
+  .section .image-menu {
+    filter: brightness(45%);
+    height: 762px;
+    max-width: 100%;
+    object-fit: cover;
+  }
+
+  .section.images {
+    width: 97%;
+    padding: 0px 8px 0px 22px;
+  }
+
+  .home {
+    font-size: 33px;
+  }
+
+  .main-section {
+    min-height: 86vh;
+  }
+
+  .button.is-rounded {
+    display: none;
+  }
+  
+  .quizz.container {
+    width: 73%;
   }
 }

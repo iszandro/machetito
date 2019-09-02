@@ -2,7 +2,6 @@
   box-shadow: 0 2px 0 0 #f5f5f5;
   background-color: rgba(0, 0, 0, 0.9);
   position: sticky;
-  height: 68px;
   top: 0;
   width: 100%;
 }
@@ -14,26 +13,26 @@
 .navbar-item {
   color: white;
   &:hover {
-    color: #FFB7C5;
+    color: $japan-pink;
     background-color: rgba(0, 0, 0, 0.9);
   }
 }
 
 .navbar-link.is-active, .navbar-link:focus, .navbar-link:focus-within, .navbar-link:hover, a.navbar-item.is-active, a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover {
-  color: #FFB7C5;
+  color: $japan-pink;
   background-color: rgba(0, 0, 0, 0.1);
 }
 
 .navbar-item.has-dropdown.is-hoverable {
   .navbar-link {
-    color: #FFB7C5;
+    color: $japan-pink;
     background-color: rgba(0, 0, 0, 0.1);
   }
   .navbar-dropdown{
     background-color: rgba(0, 0, 0, 1);
     .navbar-item {
       &:hover {
-        color: #FFB7C5;
+        color: $japan-pink;
         background-color: rgba(0, 0, 0, 1);
       }
     }
@@ -47,25 +46,11 @@
 .navbar-brand{
   a {
     span{
-      background-color: #FFB7C5;
+      background-color: $japan-pink;
     }
   }
 }
 
-
-@media only screen and (max-width: 376px) {
-  .section .image-menu {
-    filter: brightness(45%);
-    height: 762px;
-    max-width: 100%;
-    object-fit: cover;
-  }
-
-  .home {
-    font-size: 33px;
-  }
-
-  .button.is-rounded {
-    display: none;
-  }
+.main-title {
+  color: $japan-pink;
 }
