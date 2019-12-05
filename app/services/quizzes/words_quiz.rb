@@ -6,7 +6,7 @@ module Quizzes
       'Verb' => Plans::VerbPlan,
       'Noun' => Plans::NounPlan,
       'Expression' => Plans::ExpressionPlan,
-      'kanji' => Plans::KanjiPlan
+      'Kanji' => Plans::KanjiPlan
     }.freeze
 
     def initialize(category, repository, word_ids = [])

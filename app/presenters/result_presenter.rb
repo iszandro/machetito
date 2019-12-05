@@ -3,7 +3,8 @@ class ResultPresenter
     'HiraganaStrategy' => Results::HiraganaPresenter,
     'GroupStrategy' => Results::GroupPresenter,
     'MeaningStrategy' => Results::MeaningPresenter,
-    'SentenceStrategy' => Results::SentencePresenter
+    'SentenceStrategy' => Results::SentencePresenter,
+    'PartialReadingStrategy' => Results::PartialReadingPresenter
   }.freeze
 
   attr_reader :category
