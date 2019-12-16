@@ -9,10 +9,10 @@
     <div class="content">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
-          <%= f.email_field :email, autofocus: true, autocomplete: "off", placeholder: "email", type: 'text', class: 'email' %>
+          <%= f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'Email', class: 'email' %>
         </div>
         <div class="field">
-          <%= f.password_field :password, autocomplete: "off", placeholder: "password", type: 'password', class: 'password' %>
+          <%= f.password_field :password, autocomplete: 'current-password', placeholder: 'Password', class: 'password' %>
         </div>
         <div class="level options">
           <div class="checkbox level-left">
@@ -26,7 +26,7 @@
         </div>
         <div class="actions">
           <div class="field">
-            <%= f.submit t('.sing_in'), class: 'button' %>
+            <%= f.submit t('.submit'), class: 'button' %>
           </div>
           <div class="field">
             <%= render "devise/shared/links" %>
