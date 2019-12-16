@@ -983,3 +983,123 @@ Exercise.transaction do
 
   Category.find(7).exercises.concat(exercises)
 end
+
+Word.transaction do
+  words = Word.create([
+    {
+      wordable: Kanji.create(name: '形', on_yomi: %w[けい ぎょう], kun_yomi: %w[かた かたち]),
+      translations: Word.create([
+        { wordable: Noun.create(name: 'forma', language: 'es') },
+        { wordable: Noun.create(name: 'figura', language: 'es') }
+      ])
+    },
+    {
+      wordable: Kanji.create(name: '品物', kun_yomi: %w[しなもの]),
+      translations: Word.create([
+        { wordable: Noun.create(name: 'bienes', language: 'es') },
+        { wordable: Noun.create(name: 'bien', language: 'es') },
+        { wordable: Noun.create(name: 'artículo', language: 'es') },
+        { wordable: Noun.create(name: 'artículos', language: 'es') }
+      ])
+    },
+    {
+      wordable: Kanji.create(name: '習慣', kun_yomi: %w[しゅうかん]),
+      translations: Word.create([
+        { wordable: Noun.create(name: 'hábito', language: 'es') },
+      ])
+    },
+    {
+      wordable: Kanji.create(name: '小説', kun_yomi: %w[しょうせつ]),
+      translations: Word.create([
+        { wordable: Noun.create(name: 'novela', language: 'es') },
+      ])
+    },
+    {
+      wordable: Kanji.create(name: '将来', kun_yomi: %w[しょうらい]),
+      translations: Word.create([
+        { wordable: Noun.create(name: 'futuro', language: 'es', meta: { examples: 'usualmente cerca' }) },
+      ])
+    },
+    {
+      wordable: Kanji.create(name: '力', on_yomi: %w[りょく りき], kun_yomi: %w[ちから]),
+      translations: Word.create([
+        { wordable: Noun.create(name: 'poder', language: 'es') },
+      ])
+    },
+    {
+      wordable: Kanji.create(name: '熱', on_yomi: %w[ねつ], kun_yomi: %w[あつ]),
+      translations: Word.create([
+        { wordable: Noun.create(name: 'calor', language: 'es') },
+        { wordable: Noun.create(name: 'fiebre', language: 'es') },
+        { wordable: Noun.create(name: 'temperatura', language: 'es') },
+      ])
+    },
+    {
+      wordable: Kanji.create(name: '熱心な', kun_yomi: %w[ねっしん]),
+      translations: Word.create([
+        { wordable: Noun.create(name: 'celoso', language: 'es') },
+        { wordable: Noun.create(name: 'entusiasta', language: 'es') },
+        { wordable: Noun.create(name: 'ardiente', language: 'es') },
+        { wordable: Noun.create(name: 'ferviente', language: 'es') },
+        { wordable: Noun.create(name: 'afilado', language: 'es') },
+        { wordable: Noun.create(name: 'ansioso', language: 'es') },
+      ])
+    },
+    {
+      wordable: Kanji.create(name: '眠い', kun_yomi: %w[ねむ]),
+      translations: Word.create([
+        { wordable: Noun.create(name: 'soñoliento', language: 'es') },
+        { wordable: Noun.create(name: 'somnoliento', language: 'es') },
+      ])
+    },
+    {
+      wordable: Kanji.create(name: '優しい', kun_yomi: %w[やさ]),
+      translations: Word.create([
+        { wordable: Noun.create(name: 'fácil', language: 'es') },
+        { wordable: Noun.create(name: 'simple', language: 'es') },
+      ])
+    },
+    {
+      wordable: Kanji.create(name: '選ぶ', kun_yomi: %w[えら]),
+      translations: Word.create([
+        { wordable: Verb.create(name: 'elegir', language: 'es') },
+        { wordable: Verb.create(name: 'seleccionar', language: 'es') },
+        { wordable: Verb.create(name: 'escoger', language: 'es') },
+      ])
+    },
+    {
+      wordable: Kanji.create(name: '通う', kun_yomi: %w[かよ]),
+      translations: Word.create([
+        { wordable: Verb.create(name: 'ir y venir', language: 'es', meta: { examples: 'a un lugar' }) },
+        { wordable: Verb.create(name: 'ir a', language: 'es', meta: { examples: 'escuela, trabajo, etc' }) },
+        { wordable: Verb.create(name: 'frecuentar', language: 'es') },
+      ])
+    },
+    {
+      wordable: Kanji.create(name: '経験', kun_yomi: %w[けいけん]),
+      translations: Word.create([
+        { wordable: Noun.create(name: 'experiencia', language: 'es') },
+      ])
+    },
+    {
+      wordable: Kanji.create(name: '味', on_yomi: %w[み], kun_yomi: %w[あじ]),
+      translations: Word.create([
+        { wordable: Noun.create(name: 'sabor', language: 'es') },
+      ])
+    },
+    {
+      wordable: Kanji.create(name: '会話', kun_yomi: %w[かいわ]),
+      translations: Word.create([
+        { wordable: Noun.create(name: 'conversación', language: 'es') },
+      ])
+    },
+    {
+      wordable: Kanji.create(name: '色', on_yomi: %w[しょく しき],kun_yomi: %w[いろ]),
+      translations: Word.create([
+        { wordable: Noun.create(name: 'color', language: 'es') },
+      ])
+    },
+  ])
+
+  subcategory.words.concat(words)
+end

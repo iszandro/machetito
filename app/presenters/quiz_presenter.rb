@@ -5,7 +5,8 @@ class QuizPresenter
     MeaningKanjiStrategy => Quizzes::MeaningKanjiPresenter,
     HiraganaKanjiStrategy => Quizzes::HiraganaKanjiPresenter,
     GroupStrategy => Quizzes::GroupPresenter,
-    SentenceStrategy => Quizzes::SentencePresenter
+    SentenceStrategy => Quizzes::SentencePresenter,
+    PartialReadingStrategy => Quizzes::PartialReadingPresenter
   }.freeze
 
   delegate :partial, :to_model, to: :resource
