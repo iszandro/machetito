@@ -12,7 +12,6 @@
 
 * `PostgreSQL`
 * `Redis`
-* `Chrome`, for system tests
 
 ## Configuration
 
