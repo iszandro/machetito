@@ -12,7 +12,6 @@ module Users
     test 'user sees categories with no parents' do
       visit root_path
 
-      assert_content 'Categories'
       assert_content 'Vocabulary'
       assert_content 'Lessons'
       assert_content 'Kanjis'

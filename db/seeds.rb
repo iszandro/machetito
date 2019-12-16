@@ -981,7 +981,7 @@ Exercise.transaction do
     },
   ])
 
-  Category.find(42).exercises.concat(exercises)
+  Category.find(7).exercises.concat(exercises)
 end
 
 Word.transaction do

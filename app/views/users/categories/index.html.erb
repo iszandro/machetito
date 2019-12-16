@@ -1,9 +1,58 @@
-<h1 class="title">Categories</h1>
 
-<ul class="categories">
-  <% @categories.each do |category| %>
-    <li class="category">
-      <%= link_to category.display_name, category_path(category) %>
-    </li>
-  <% end %>
-</ul>
+<div class="container home">
+  <h1>Machetito.com</h1>
+  <h2>
+    <P>machetito is an app to help you practice and learn Japanese words. Quizzes will help you to write the correct word, hiragana, katakana or meaning.</p>
+  </h2>
+</div>
+
+<a class="button is-rounded is-large" href="#about">
+  <strong>About</strong>
+</a>
+
+<section class="section">
+  <div>
+    <%= image_tag 'japan_main.jpg', class: 'image-menu' %>
+  </div>
+</section>
+
+<div class='line-home'>
+</div>
+
+<section id="about" class="section about">
+  <div class="container">
+    <h1 class="title has-text-centered">ABOUT</h1>
+    <div class="column">
+      <h2 class="subtitle">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section images">
+  <div class="container" >
+    <div class="columns">
+      <div class="column">
+        <figure class="image is-5by4">
+          <%= image_tag 'akb.jpg' %>
+        </figure>
+      </div>
+      <div class="column">
+        <figure class="image is-5by4">
+          <%= image_tag 'jp2.jpg' %>
+        </figure>
+      </div>
+      <div class="column">
+        <figure class="image is-5by4">
+          <%= image_tag 'jp3.jpg' %>
+        </figure>
+      </div>
+      <div class="column">
+        <figure class="image is-5by4">
+          <%= image_tag 'jp4.jpg' %>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>

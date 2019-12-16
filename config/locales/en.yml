@@ -8,6 +8,7 @@ en:
       new:
         page_title: Log in to Machetito
         title: Log in
+        sing_in: Sing in
         submit: Log in
   invitations:
     show:
