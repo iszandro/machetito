@@ -1,0 +1,35 @@
+<h1 class="word title is-1"><%= @word.title %></h1>
+
+<h5 class="word-type title is-5">
+  Kanji
+  <span class="tag is-info">JLPT <%= @word.presenter.level %></span>
+</h5>
+
+<h5 class="word-type title is-5"><%= t('general.readings') %></h5>
+
+<table class="table is-fullwidth">
+  <thead>
+  <tr>
+    <th>On Yomi</th>
+    <th>Kun Yomi</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @word.presenter.readings.each_slice(2) do |result| %>
+    <tr>
+      <td><%= result[0] %></td>
+      <td><%= result[1] %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h5 class="word-type title is-5"><%= t('general.translations') %></h5>
+
+<ul class="translations">
+  <% @word.translations.each do |translation| %>
+    <li class="translation">
+      <%= [translation.wordable.name, translation.wordable.meta['examples']].compact.join(' => ') %>
+    </li>
+  <% end %>
+</ul>

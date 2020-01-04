@@ -1,23 +1,26 @@
-<h1 class="word title is-1"><%= @word.wordable.name %></h1>
+<%= render @word.partial.to_s %>
 
-<% if @word.wordable.meta['kanji'] %>
-  <h2 class="word-kanji subtitle is-2"><%= @word.wordable.meta['kanji'] %></h2>
-<% end %>
 
-<h5 class="word-type title is-5"><%= @word.wordable_type %></h5>
+<!--<h1 class="word title is-1"><%#= @word.title %></h1>-->
 
-<p class="word-description">
-  <%= @word.wordable.meta['description'] %>
-</p>
+<%# if @word.wordable.meta['kanji'] %>
+<!--  <h2 class="word-kanji subtitle is-2"><%#= @word.wordable.meta['kanji'] %></h2>-->
+<%# end %>
 
-<p class="word-example">
-  <%= @word.wordable.meta['examples'] %>
-</p>
+<!--<h5 class="word-type title is-5"><%#= @word.type %></h5>-->
 
-<ul class="translations">
-  <% @word.translations.each do |translation| %>
-    <li class="translation">
-      <%= [translation.wordable.name, translation.wordable.meta['examples']].compact.join(' => ') %>
-    </li>
-  <% end %>
-</ul>
+<!--<p class="word-description">-->
+  <%#= @word.description %>
+<!--</p>-->
+
+<!--<p class="word-example">-->
+  <%#= @word.examples %>
+<!--</p>-->
+
+<!--<ul class="translations">-->
+  <%# @word.translations.each do |translation| %>
+<!--    <li class="translation">-->
+      <%#= [translation.wordable.name, translation.wordable.meta['examples']].compact.join(' => ') %>
+<!--    </li>-->
+  <%# end %>
+<!--</ul>-->
