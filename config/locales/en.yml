@@ -9,6 +9,11 @@ en:
         page_title: Log in to Machetito
         title: Log in
         submit: Log in
+  general:
+    categories: Categories
+    notes: Notes
+    readings: Readings
+    translations: Translations
   invitations:
     show:
       page_title: Welcome to Machetito

@@ -1,0 +1,26 @@
+<h1 class="word title is-1"><%= @word.title %></h1>
+
+<% if @word.presenter.kanji? %>
+  <h2 class="word-kanji subtitle is-2"><%= @word.presenter.kanji %></h2>
+<% end %>
+
+<h5 class="word-type title is-5"><%= @word.type %></h5>
+
+<% if @word.presenter.notes? %>
+  <h5 class="word-type title is-5"><%= t('general.notes') %></h5>
+
+  <span class="word-description">
+    <%= @word.presenter.notes %>
+  </span>
+  <br /><br />
+<% end %>
+
+<h5 class="word-type title is-5"><%= t('general.translations') %></h5>
+
+<ul class="translations">
+  <% @word.translations.each do |translation| %>
+    <li class="translation">
+      <%= [translation.wordable.name, translation.wordable.meta['examples']].compact.join(' => ') %>
+    </li>
+  <% end %>
+</ul>
