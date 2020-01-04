@@ -5,17 +5,11 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
+  root to: 'home#index'
+
   devise_for :users
 
   resources :invitations, only: %i(show update)
-
-  authenticated :user do
-    root to: 'users/categories#index'
-  end
-
-  unauthenticated do
-    root to: 'home#index'
-  end
 
   scope module: :users do
     resources :categories, only: %i[index show] do

@@ -12,6 +12,6 @@ class SessionsTest < ApplicationSystemTestCase
     click_on 'Log in'
 
     assert_content 'Categories'
-    assert_current_path root_path
+    assert_current_path categories_path
   end
 end

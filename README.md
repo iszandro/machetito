@@ -6,7 +6,7 @@
 
 ## Ruby version
 
-`Ruby 2.6.3`
+`Ruby 2.7.0`
 
 ## System dependencies
 
