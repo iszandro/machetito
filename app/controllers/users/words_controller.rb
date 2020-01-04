@@ -3,7 +3,8 @@
 module Users
   class WordsController < BaseController
     def show
-      @word = Word.find(params[:id])
+       word = Word.includes(:wordable, translations: :wordable).find(params[:id])
+       @word = Users::WordPresenter.new(word)
     end
   end
 end
