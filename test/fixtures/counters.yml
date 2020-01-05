@@ -1,0 +1,4 @@
+jp_dai_counter:
+  name: ~だい
+  language: jp
+  meta: { kanji: '~台', examples: '2だい の くるま' }

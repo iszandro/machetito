@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_16_023919) do
+ActiveRecord::Schema.define(version: 2020_01_05_003553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,14 @@ ActiveRecord::Schema.define(version: 2019_12_16_023919) do
     t.index ["category_id", "word_id"], name: "index_category_words_on_category_id_and_word_id", unique: true
     t.index ["category_id"], name: "index_category_words_on_category_id"
     t.index ["word_id"], name: "index_category_words_on_word_id"
+  end
+
+  create_table "counters", force: :cascade do |t|
+    t.string "name"
+    t.string "language", null: false
+    t.jsonb "meta", default: {}
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "exercises", force: :cascade do |t|
