@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Setup Ruby
-        uses: actions/setup-ruby@v1
+        uses: eregon/use-ruby-action@master
         with:
           ruby-version: 2.7.0
       - name: Build and run tests
