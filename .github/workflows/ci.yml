@@ -25,7 +25,21 @@ jobs:
         uses: eregon/use-ruby-action@master
         with:
           ruby-version: 2.7.0
-      - name: Build and run tests
+      - name: Install bundler
+        run: gem install bundler
+      - name: Setup PG
+        run: sudo apt-get -yqq install libpq-dev
+      - name: Install Gems
+        env:
+          RAILS_ENV: test
+          RACK_ENV: test
+        run: bundle install --jobs 4 --retry 3
+      - name: Security checks
+        run: |
+          bundle exec bundle-audit update
+          bundle exec bundle-audit check
+          bundle exec brakeman -A -w3
+      - name: Run tests
         env:
           DATABASE_URL: postgres://postgres:@localhost:5432/machetito_test
           REDIS_URL: redis://localhost:6379/0
@@ -33,12 +47,7 @@ jobs:
           RACK_ENV: test
 #          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: |
-          sudo apt-get -yqq install libpq-dev
-          gem install bundler
-          bundle install --jobs 4 --retry 3
-          bundle exec rails db:setup
-          bundle exec bundle-audit update
-          bundle exec bundle-audit check
-          bundle exec brakeman -A -w3
+          bundle exec rails db:create
+          bundle exec rails db:schema:load
           bundle exec rails test:system
           bundle exec rails test
