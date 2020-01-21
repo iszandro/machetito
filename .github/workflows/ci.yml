@@ -31,11 +31,11 @@ jobs:
         run: sudo apt-get -yqq install libpq-dev
       - name: Cache gems
         uses: actions/cache@v1
-          with:
-            path: vendor/bundle
-            key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-            restore-keys: |
-              ${{ runner.os }}-gem-
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
       - name: Install Gems
         run: |
           bundle config path vendor/bundle
