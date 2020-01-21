@@ -1,0 +1,71 @@
+name: CI
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: postgres
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis
+        ports: ['6379:6379']
+        options: --entrypoint redis-server
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup Ruby
+        uses: eregon/use-ruby-action@master
+        with:
+          ruby-version: 2.7.0
+      - name: Install bundler
+        run: gem install bundler
+      - name: Setup PG
+        run: sudo apt-get -yqq install libpq-dev
+      - name: Cache gems
+        uses: actions/cache@v1
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+      - name: Install Gems
+        run: |
+          bundle config path vendor/bundle
+          bin/bundle install --path vendor/bundle --jobs 4 --retry 3
+      - name: Security checks
+        run: |
+          bundle exec bundle-audit update
+          bundle exec bundle-audit check
+          bundle exec brakeman -A -w3
+      - name: Setup DB
+        env:
+          DATABASE_URL: postgres://postgres:@localhost:5432/machetito_test
+          REDIS_URL: redis://localhost:6379/0
+          RAILS_ENV: test
+          RACK_ENV: test
+        run: |
+          bundle exec rails db:create
+          bundle exec rails db:schema:load
+      - name: Run system tests
+        env:
+          DATABASE_URL: postgres://postgres:@localhost:5432/machetito_test
+          REDIS_URL: redis://localhost:6379/0
+          RAILS_ENV: test
+          RACK_ENV: test
+        run: bundle exec rails test:system
+      - name: Run unit tests
+        env:
+          DATABASE_URL: postgres://postgres:@localhost:5432/machetito_test
+          REDIS_URL: redis://localhost:6379/0
+          RAILS_ENV: test
+          RACK_ENV: test
+#          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+        run: bundle exec rails test
