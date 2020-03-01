@@ -44,11 +44,6 @@ jobs:
         run: |
           bundle config path vendor/bundle
           bin/bundle install --path vendor/bundle --jobs 4 --retry 3
-      - name: Security checks
-        run: |
-          bundle exec bundle-audit update
-          bundle exec bundle-audit check
-          bundle exec brakeman -A -w3
       - name: Run system tests
         env:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/machetito_test
