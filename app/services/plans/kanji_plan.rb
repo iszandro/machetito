@@ -4,7 +4,7 @@ module Plans
 
     def perform(word)
       [
-        #[word.id, 'MeaningStrategy'],
+        [word.id, 'MeaningKanjiStrategy'],
         [word.id, 'PartialReadingStrategy'],
       ]
     end

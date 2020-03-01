@@ -4,6 +4,7 @@ class ResultPresenter
     'GroupStrategy' => Results::GroupPresenter,
     'MeaningStrategy' => Results::MeaningPresenter,
     'SentenceStrategy' => Results::SentencePresenter,
+    'MeaningKanjiStrategy' => Results::MeaningKanjiPresenter,
     'PartialReadingStrategy' => Results::PartialReadingPresenter
   }.freeze
 
