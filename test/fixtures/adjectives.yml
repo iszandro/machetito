@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+tall_jp:
+  name: 'たかい'
+  language: jp
+
+tall_es:
+  name: alto
+  language: es
+
+quite_jp:
+  name: 'しずかな'
+  language: jp
+
+quite_es:
+  name: callado
+  language: es
