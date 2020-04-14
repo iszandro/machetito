@@ -1,6 +1,10 @@
 name: Unit tests
 
-on: [push]
+on:
+  push:
+    paths:
+      - machetito/*
+      - .github/workflows/unit.yml
 
 jobs:
   build:
@@ -25,6 +29,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+      - uses: whoan/docker-build-with-cache-action@v4
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          image_name: iszandro/machetito/ruby
+          registry: docker.pkg.github.com
+          context: machetito
       - name: Setup Ruby
         uses: eregon/use-ruby-action@master
         with:
