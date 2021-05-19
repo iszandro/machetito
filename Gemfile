@@ -7,7 +7,7 @@ gem 'bootsnap', require: false
 gem 'devise'
 gem 'jbuilder', '~> 2.5'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', ' ~> 3.12.4'
+gem 'puma', '~> 4.3.8'
 gem 'rails', '~> 6.0.2'
 gem 'redis'
 gem 'rollbar'
